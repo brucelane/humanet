@@ -1,0 +1,4 @@
+ofxFFT
+ofxOsc
+ofxSpout2
+ofxXmlSettings
