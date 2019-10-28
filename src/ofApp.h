@@ -71,4 +71,6 @@ private:
 	string mouseButtonState;
 
 	ofImage receivedImage;
+	string oscAddr = "";
+	int current, oscInt0, ibar, beat;
 };

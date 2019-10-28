@@ -61,6 +61,11 @@ void ofApp::setup() {
 	mouseX = 0;
 	mouseY = 0;
 	mouseButtonState = "";
+	current = 4;
+	oscInt0 = 0;
+	ibar = 1;
+	beat = 1;
+	
 }
 
 //--------------------------------------------------------------
@@ -97,7 +102,7 @@ void ofApp::update() {
 		else {
 			// unrecognized message: display on the bottom of the screen
 			string msg_string;
-			msg_string = m.getAddress();
+			msg_string = oscAddr = m.getAddress();
 			msg_string += ": ";
 			for (int i = 0; i < m.getNumArgs(); i++) {
 				// get the argument type
@@ -106,6 +111,7 @@ void ofApp::update() {
 				// display the argument - make sure we get the right type
 				if (m.getArgType(i) == OFXOSC_TYPE_INT32) {
 					msg_string += ofToString(m.getArgAsInt32(i));
+					oscInt0 = m.getArgAsInt32(i);
 				}
 				else if (m.getArgType(i) == OFXOSC_TYPE_FLOAT) {
 					msg_string += ofToString(m.getArgAsFloat(i));
@@ -119,6 +125,16 @@ void ofApp::update() {
 			}
 			// add to the list of strings to display
 			msg_strings[current_msg_string] = msg_string;
+			if (oscAddr == "/beat") {
+				// int32 1 to 4 beat from Transthor
+				beat = oscInt0 - 1;
+				current = ibar * 4 + beat;
+
+			} else if (oscAddr == "/bar") {
+				
+				ibar = oscInt0;
+				current = ibar * 4 + beat;
+			}
 			timers[current_msg_string] = ofGetElapsedTimef() + 5.0f;
 			current_msg_string = (current_msg_string + 1) % NUM_MSG_STRINGS;
 			// clear the next line
@@ -220,13 +236,11 @@ void ofApp::draw() {
 	ofDrawBitmapString(mouseButtonState, 580, 20);
 
 	for (int i = 0; i < NUM_MSG_STRINGS; i++) {
-		ofDrawBitmapString(msg_strings[i], 10, 40 + 15 * i);
+		ofDrawBitmapString(msg_strings[i], 10, 60 + 15 * i);
 	}
 
-	//image.draw(200, 100);	
-	//ofSetColor(0);
-	//ofDrawBitmapString("Tempo: " + ofToString(link.tempo()) + " Beats: " + ofToString(status.beat) + " Phase: " + ofToString(status.phase), 20, 20);
-	//ofDrawBitmapString("Number of peers: " + ofToString(link.numPeers()), 20, 40);
+	
+	ofDrawBitmapString("current: " + ofToString(current), 20, 40);
 }
 void ofApp::loadImage() {
 	bool bFileThere = false;
