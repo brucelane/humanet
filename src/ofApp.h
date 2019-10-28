@@ -34,6 +34,7 @@ private:
 	void loadImage();
 
 	ofImage colormap, bumpmap;
+	ofImage titleImage;
 	int imgIndex;
 	GLUquadricObj *quadric;
 	// spout
@@ -70,7 +71,6 @@ private:
 	int mouseX, mouseY;
 	string mouseButtonState;
 
-	ofImage receivedImage;
 	string oscAddr = "";
 	int current, oscInt0, ibar, beat;
 };

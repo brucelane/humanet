@@ -33,6 +33,7 @@ void ofApp::setup() {
 	audioPeakDecay = 0.915;
 	audioMaxDecay = 0.995;
 	audioMirror = false;
+	titleImage.loadImage("p-(0).jpg");
 	colormap.loadImage("p-(1).jpg");
 	bumpmap.loadImage("p-(1).jpg");
 
@@ -65,7 +66,7 @@ void ofApp::setup() {
 	oscInt0 = 0;
 	ibar = 1;
 	beat = 1;
-	
+
 }
 
 //--------------------------------------------------------------
@@ -97,12 +98,13 @@ void ofApp::update() {
 		// check for an image being sent (note: the size of the image depends greatly on your network buffer sizes - if an image is too big the message won't come through ) 
 		else if (m.getAddress() == "/image") {
 			ofBuffer buffer = m.getArgAsBlob(0);
-			receivedImage.load(buffer);
+			titleImage.load(buffer);
 		}
 		else {
 			// unrecognized message: display on the bottom of the screen
 			string msg_string;
-			msg_string = oscAddr = m.getAddress();
+			oscAddr = m.getAddress();
+			msg_string = m.getAddress();
 			msg_string += ": ";
 			for (int i = 0; i < m.getNumArgs(); i++) {
 				// get the argument type
@@ -130,10 +132,17 @@ void ofApp::update() {
 				beat = oscInt0 - 1;
 				current = ibar * 4 + beat;
 
-			} else if (oscAddr == "/bar") {
-				
+			}
+			else if (oscAddr == "/bar") {
+				if (imgIndex != oscInt0 - 400) {
+					imgIndex = oscInt0 - 400;
+					loadImage();
+				}
 				ibar = oscInt0;
 				current = ibar * 4 + beat;
+			}
+			else if (oscAddr == "/play") {
+				isPlaying = (oscInt0 == 1);
 			}
 			timers[current_msg_string] = ofGetElapsedTimef() + 5.0f;
 			current_msg_string = (current_msg_string + 1) % NUM_MSG_STRINGS;
@@ -162,73 +171,76 @@ void ofApp::update() {
 	//	factor = 0.0f;
 	//}
 	//factor = ofMap(mouseY, 0.0f, ofGetHeight(), -1.0f, 1.0f);
-	ofSetWindowTitle("angle: " + ofToString(angleX, 2) + "img: " + ofToString(imgIndex, 2) + " mult: " + ofToString(factor, 2) + " - " + ofToString(audioValue, 2) + " - " + ofToString(ofGetFrameNum(), 2));
+	ofSetWindowTitle("angle: " + ofToString(angleX, 2) + "img: " + ofToString(imgIndex, 2) + " mult: " + ofToString(factor, 2) + " - " + ofToString(audioValue, 2) + " - " + ofToString(ofGetFrameNum(), 2) + " img " + ofToString(imgIndex) + " current " + ofToString(current) + " bar " + ofToString(ibar) + " beat " + ofToString(beat));
 
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-	
+
 	ofSetColor(255);
-
-	maxHeight = audioValue * 50 * factor + ofGetFrameNum() / 200;
-	fbo.begin();
-	ofClear(0, 0, 0, 0);
-	ofPushMatrix();
-	twod.set(0.30, 0.59, 0.11);
-	//twod.set(0.0, 0.0, 0.0);
-	shader.begin();
-	shader.setUniformTexture("colormap", colormap, 1);
-	shader.setUniformTexture("bumpmap", bumpmap, 2);
-	//shader.setUniformTexture("colormap", image, 1);
-	//shader.setUniformTexture("bumpmap", image, 2);
-	shader.setUniform1f("maxHeight", maxHeight);
-	shader.setUniform3f("twod", twod);
 	if (isPlaying) {
-		currentTime = ofGetElapsedTimef() - startTime;
+		maxHeight = audioValue * 50 * factor + ofGetFrameNum() / 200;
+		fbo.begin();
+		ofClear(0, 0, 0, 0);
+		ofPushMatrix();
+		twod.set(0.30, 0.59, 0.11);
+		//twod.set(0.0, 0.0, 0.0);
+		shader.begin();
+		shader.setUniformTexture("colormap", colormap, 1);
+		shader.setUniformTexture("bumpmap", bumpmap, 2);
+		//shader.setUniformTexture("colormap", image, 1);
+		//shader.setUniformTexture("bumpmap", image, 2);
+		shader.setUniform1f("maxHeight", maxHeight);
+		shader.setUniform3f("twod", twod);
+		if (isPlaying) {
+			currentTime = ofGetElapsedTimef() - startTime;
+		}
+		else {
+			currentTime = 0.0f;
+		}
+		if (currentTime < 25.7f) {
+			shader.setUniform1f("time", currentTime);
+			angleX = 0.0f;
+			angleY = 90.0f;
+			angleZ = 180.0f;
+			//ofTranslate(targetWidth / 2, targetHeight / 2);
+			ofTranslate(ofLerp(targetWidth / 4, targetWidth / 2, currentTime / 50), ofLerp(targetHeight, targetHeight / 2, currentTime / 50));
+		}
+		else {
+			shader.setUniform1f("time", 40.0f);
+			angleX = 360.0f + (mouseX / 1.0 + 0.01) * sinf(float(ofGetFrameNum()) / 500.0f);
+			angleY = 360.0f + (mouseY / 1.0 + 0.01) * sinf(float(ofGetFrameNum()) / 500.0f);
+			angleZ = 0.0f;
+			ofTranslate(targetWidth / 2, targetHeight / 2);
+		}
+		//shader.setUniform1f("factor", factor);
+		//ofTranslate(ofGetWidth() / 2, ofGetHeight() / 2);
+
+		ofRotateY(angleX);
+		ofRotateX(angleY);
+		ofRotate(-90, 1, 0, 0);
+		//gluSphere(quadric, 150, 400, 400);
+		gluSphere(quadric, 160 + ofGetFrameNum() / 200, 400, 400); //300 taille sphere
+		shader.end();
+		fbo.end();
+
+		ofPopMatrix();
+
+		spout.sendTexture(fbo.getTexture(), "humanet");
+		fbo.draw(0, 0, targetWidth, targetHeight);
 	}
 	else {
-		currentTime = 0.0f;
+		// not playing
+		if (titleImage.getWidth() > 0) {
+			titleImage.draw(0, 0);
+			spout.sendTexture(titleImage.getTexture(), "humanet");
+			ofDrawBitmapString("Image:", 10, 160);
+		}
 	}
-	if (currentTime < 25.7f) {
-		shader.setUniform1f("time", currentTime);
-		angleX = 0.0f;
-		angleY = 90.0f;
-		angleZ = 180.0f;
-		//ofTranslate(targetWidth / 2, targetHeight / 2);
-		ofTranslate(ofLerp( targetWidth / 4, targetWidth / 2, currentTime/50), ofLerp( targetHeight, targetHeight / 2, currentTime/50));
-	}
-	else {
-		shader.setUniform1f("time", 40.0f);
-		angleX = 360.0f + (mouseX / 1.0 + 0.01) * sinf(float(ofGetFrameNum()) / 500.0f);
-		angleY = 360.0f + (mouseY / 1.0 + 0.01) * sinf(float(ofGetFrameNum()) / 500.0f);
-		angleZ = 0.0f;
-		ofTranslate(targetWidth / 2, targetHeight / 2);
-	}
-	//shader.setUniform1f("factor", factor);
-	//ofTranslate(ofGetWidth() / 2, ofGetHeight() / 2);
-
-	ofRotateY(angleX);
-	ofRotateX(angleY);
-	ofRotate(-90, 1, 0, 0);
-	//gluSphere(quadric, 150, 400, 400);
-	gluSphere(quadric, 160 + ofGetFrameNum() / 200, 400, 400); //300 taille sphere
-	shader.end();
-	fbo.end();
-
-	ofPopMatrix();
-
-
-	spout.sendTexture(fbo.getTexture(), "humanet");
-	fbo.draw(0, 0, targetWidth, targetHeight);
 	string buf;
 	buf = "listening for osc messages on port" + ofToString(PORT);
 	ofDrawBitmapString(buf, 10, 20);
-
-	if (receivedImage.getWidth() > 0) {
-		ofDrawBitmapString("Image:", 10, 160);
-		receivedImage.draw(10, 180);
-	}
 
 	// draw mouse state
 	buf = "mouse: " + ofToString(mouseX, 4) + " " + ofToString(mouseY, 4);
@@ -239,7 +251,6 @@ void ofApp::draw() {
 		ofDrawBitmapString(msg_strings[i], 10, 60 + 15 * i);
 	}
 
-	
 	ofDrawBitmapString("current: " + ofToString(current), 20, 40);
 }
 void ofApp::loadImage() {
@@ -256,7 +267,7 @@ void ofApp::loadImage() {
 	string fileNameInOF = ofToDataPath(fileName); // since OF files are in the data directory, we need to do this  
 	fin.open(fileNameInOF.c_str(), ios::in);
 	if (fin.is_open()) {
-		cout << " file exists" << endl;
+		cout << " file exists" << fileName << endl;
 		bFileThere = true;
 	}
 	fin.close();
