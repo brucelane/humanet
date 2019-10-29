@@ -68,7 +68,7 @@ private:
 	string msg_strings[NUM_MSG_STRINGS];
 	float timers[NUM_MSG_STRINGS];
 
-	int mouseX, mouseY;
+	int mx, my;
 	string mouseButtonState;
 
 	string oscAddr = "";

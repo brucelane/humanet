@@ -59,8 +59,8 @@ void ofApp::setup() {
 	receiver.setup(PORT);
 
 	current_msg_string = 0;
-	mouseX = 0;
-	mouseY = 0;
+	mx = 0;
+	my = 0;
 	mouseButtonState = "";
 	current = 4;
 	oscInt0 = 0;
@@ -87,8 +87,8 @@ void ofApp::update() {
 		// check for mouse moved message
 		if (m.getAddress() == "/mouse/position") {
 			// both the arguments are int32's
-			mouseX = m.getArgAsInt32(0);
-			mouseY = m.getArgAsInt32(1);
+			mx = m.getArgAsInt32(0);
+			my = m.getArgAsInt32(1);
 		}
 		// check for mouse button message
 		else if (m.getAddress() == "/mouse/button") {
@@ -193,12 +193,12 @@ void ofApp::draw() {
 		//shader.setUniformTexture("bumpmap", image, 2);
 		shader.setUniform1f("maxHeight", maxHeight);
 		shader.setUniform3f("twod", twod);
-		if (isPlaying) {
+		//if (isPlaying) {
 			currentTime = ofGetElapsedTimef() - startTime;
-		}
+		/*}
 		else {
 			currentTime = 0.0f;
-		}
+		} */
 		if (currentTime < 25.7f) {
 			shader.setUniform1f("time", currentTime);
 			angleX = 0.0f;
@@ -209,8 +209,8 @@ void ofApp::draw() {
 		}
 		else {
 			shader.setUniform1f("time", 40.0f);
-			angleX = 360.0f + (mouseX / 1.0 + 0.01) * sinf(float(ofGetFrameNum()) / 500.0f);
-			angleY = 360.0f + (mouseY / 1.0 + 0.01) * sinf(float(ofGetFrameNum()) / 500.0f);
+			angleX = 360.0f + (mx / 1.0 + 0.01) * sinf(float(ofGetFrameNum()) / 500.0f);
+			angleY = 360.0f + (my / 1.0 + 0.01) * sinf(float(ofGetFrameNum()) / 500.0f);
 			angleZ = 0.0f;
 			ofTranslate(targetWidth / 2, targetHeight / 2);
 		}
@@ -231,6 +231,7 @@ void ofApp::draw() {
 		fbo.draw(0, 0, targetWidth, targetHeight);
 	}
 	else {
+		currentTime = 0.0f;
 		// not playing
 		if (titleImage.getWidth() > 0) {
 			titleImage.draw(0, 0);
@@ -243,7 +244,7 @@ void ofApp::draw() {
 	ofDrawBitmapString(buf, 10, 20);
 
 	// draw mouse state
-	buf = "mouse: " + ofToString(mouseX, 4) + " " + ofToString(mouseY, 4);
+	buf = "mouse: " + ofToString(mx, 4) + " " + ofToString(my, 4);
 	ofDrawBitmapString(buf, 430, 20);
 	ofDrawBitmapString(mouseButtonState, 580, 20);
 
@@ -267,7 +268,7 @@ void ofApp::loadImage() {
 	string fileNameInOF = ofToDataPath(fileName); // since OF files are in the data directory, we need to do this  
 	fin.open(fileNameInOF.c_str(), ios::in);
 	if (fin.is_open()) {
-		cout << " file exists" << fileName << endl;
+		cout << fileName << " exists" << endl;
 		bFileThere = true;
 	}
 	fin.close();
@@ -300,12 +301,14 @@ void ofApp::keyPressed(int key) {
 		if (factor < 1) factor = 1;
 	}
 	if (key == ' ') {
-		isPlaying = !isPlaying;
-		startTime = ofGetElapsedTimef();
+		
 		if (isPlaying) {
+			isPlaying = false;
 			soundPlayer.stop();
 		}
 		else {
+			isPlaying = true;
+			startTime = ofGetElapsedTimef();
 			soundPlayer.play();
 		}
 	}
@@ -328,7 +331,8 @@ void ofApp::mouseMoved(int x, int y) {
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button) {
-
+	mx = x;
+	my = y;
 }
 
 //--------------------------------------------------------------
