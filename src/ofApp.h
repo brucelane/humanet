@@ -8,7 +8,7 @@
 
 // listen on port 8000
 #define PORT 8000
-#define NUM_MSG_STRINGS 20
+#define NUM_MSG_STRINGS 5
 
 class ofApp : public ofBaseApp {
 
@@ -72,5 +72,5 @@ private:
 	string mouseButtonState;
 
 	string oscAddr = "";
-	int current, oscInt0, ibar, beat;
+	int current, oscInt0, bar, beat;
 };

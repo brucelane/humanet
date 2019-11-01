@@ -64,7 +64,7 @@ void ofApp::setup() {
 	mouseButtonState = "";
 	current = 4;
 	oscInt0 = 0;
-	ibar = 1;
+	bar = 1;
 	beat = 1;
 
 }
@@ -130,19 +130,33 @@ void ofApp::update() {
 			if (oscAddr == "/beat") {
 				// int32 1 to 4 beat from Transthor
 				beat = oscInt0 - 1;
-				current = ibar * 4 + beat;
+				current = bar * 4 + beat;
 
 			}
 			else if (oscAddr == "/bar") {
-				if (imgIndex != oscInt0 - 400) {
-					imgIndex = oscInt0 - 400;
-					loadImage();
+				bar = oscInt0;
+				current = bar * 4 + beat;
+				if (current > 67 && current < 132 && current % 16 == 4 && (beat == 0 || beat == 1)) {
+					if (imgIndex != oscInt0) {
+						imgIndex = oscInt0;
+						loadImage();
+					}
 				}
-				ibar = oscInt0;
-				current = ibar * 4 + beat;
 			}
 			else if (oscAddr == "/play") {
-				isPlaying = (oscInt0 == 1);
+				if (oscInt0 == 1) {
+					if (!isPlaying) {
+						isPlaying = true;
+						startTime = ofGetElapsedTimef();
+						soundPlayer.play(); // TODO doubles the sound, needed for fft but not in a live performance
+					}
+				}
+				else {
+					if (isPlaying) {
+						isPlaying = false;
+						soundPlayer.stop();
+					}
+				}
 			}
 			timers[current_msg_string] = ofGetElapsedTimef() + 5.0f;
 			current_msg_string = (current_msg_string + 1) % NUM_MSG_STRINGS;
@@ -171,7 +185,7 @@ void ofApp::update() {
 	//	factor = 0.0f;
 	//}
 	//factor = ofMap(mouseY, 0.0f, ofGetHeight(), -1.0f, 1.0f);
-	ofSetWindowTitle("angle: " + ofToString(angleX, 2) + "img: " + ofToString(imgIndex, 2) + " mult: " + ofToString(factor, 2) + " - " + ofToString(audioValue, 2) + " - " + ofToString(ofGetFrameNum(), 2) + " img " + ofToString(imgIndex) + " current " + ofToString(current) + " bar " + ofToString(ibar) + " beat " + ofToString(beat));
+	ofSetWindowTitle("angle: " + ofToString(angleX, 2) + "img: " + ofToString(imgIndex, 2) + " mult: " + ofToString(factor, 2) + " - " + ofToString(audioValue, 2) + " - " + ofToString(ofGetFrameNum(), 2) + " img " + ofToString(imgIndex) + " current " + ofToString(current) + " bar " + ofToString(bar) + " beat " + ofToString(beat));
 
 }
 
@@ -181,8 +195,21 @@ void ofApp::draw() {
 	ofSetColor(255);
 	if (isPlaying) {
 		maxHeight = audioValue * 50 * factor + ofGetFrameNum() / 200;
+		
 		fbo.begin();
-		ofClear(0, 0, 0, 0);
+		if (current % 16 == 4  && (beat == 0 || beat == 1) ) {
+			maxHeight = 200.0f;		
+		}
+		else {
+			ofClear(0, 0, 0, 0);
+		}
+		/*if (bar % 4 == 0 && beat < 2) {
+			maxHeight *= 20.0f;
+		}
+		else {
+			ofClear(0, 0, 0, 0);
+		}*/
+		
 		ofPushMatrix();
 		twod.set(0.30, 0.59, 0.11);
 		//twod.set(0.0, 0.0, 0.0);
@@ -295,12 +322,14 @@ void ofApp::keyPressed(int key) {
 		//link.setTempo(link.tempo() + 1);
 		factor++;
 	}
+	else if (key == 'p') {
+		cout << " current " << ofToString(current) << " bar " << ofToString(bar) << " beat " << ofToString(beat) << "\n";
+	}
 	else if (key == OF_KEY_DOWN) {
 		//link.setTempo(link.tempo() - 1);
 		factor--;
 		if (factor < 1) factor = 1;
-	}
-	if (key == ' ') {
+	} else if (key == ' ') {
 		
 		if (isPlaying) {
 			isPlaying = false;
@@ -312,9 +341,6 @@ void ofApp::keyPressed(int key) {
 			soundPlayer.play();
 		}
 	}
-	//if (key == 'f')	 ofSetFullscreen(true);
-
-
 }
 void ofApp::exit() {
 	spout.exit();
