@@ -136,9 +136,9 @@ void ofApp::update() {
 			else if (oscAddr == "/bar") {
 				bar = oscInt0;
 				current = bar * 4 + beat;
-				if (current > 67 && current < 132 && current % 16 == 4 && (beat == 0 || beat == 1)) {
-					if (imgIndex != oscInt0) {
-						imgIndex = oscInt0;
+				if (current > 67  && current % 16 == 4 && (beat == 0 || beat == 1)) {
+					if (imgIndex != ((oscInt0 - 16) / 4) + 2) {
+						imgIndex = ((oscInt0 - 16) / 4) + 2;
 						loadImage();
 					}
 				}
@@ -155,6 +155,8 @@ void ofApp::update() {
 					if (isPlaying) {
 						isPlaying = false;
 						soundPlayer.stop();
+						imgIndex = 1;
+						loadImage();
 					}
 				}
 			}
@@ -334,6 +336,8 @@ void ofApp::keyPressed(int key) {
 		if (isPlaying) {
 			isPlaying = false;
 			soundPlayer.stop();
+			imgIndex = 1;
+			loadImage();
 		}
 		else {
 			isPlaying = true;
