@@ -15,16 +15,12 @@ void main(void) {
     float df = twod.x*bumpColor.x + twod.y*bumpColor.y + twod.z*bumpColor.z;
     vec4 newVertexPos = vec4(gl_Normal * df * maxHeight, 0.0) + gl_Vertex; // without 2D lpm
 
-	//newVertexPos = mix(newVertexPos, vec4(TexCoord, 0, 1), fract(time*0.1));
-	//newVertexPos = mix(newVertexPos, vec4(TexCoord * vec2(1.0,1.0), 0.5, 1), fract(time*0.1));
-	//newVertexPos = mix(newVertexPos, vec4(TexCoord * vec2(0.5,-0.5), 0.5, 0.5), 1.0);
-	//newVertexPos = vec4(TexCoord * vec2(1.0,1.0), 0.0, 0.1);
-	//newVertexPos = mix(newVertexPos, vec4(TexCoord*vec2(1,-1) * 100, 0, 1), 1);
 	newVertexPos = mix(newVertexPos, vec4(TexCoord*vec2(1,-1) * 800.0, 0.0, 1.0), fract( (40.0 - time) * 0.02));
 	//newVertexPos = vec4(TexCoord*vec2(1,-1) * 800.0, 0.0, 1.0);
 	gl_Position = gl_ModelViewProjectionMatrix * newVertexPos;
 }
-/*
+
+/* tests
 uniform sampler2D colormap;
 uniform sampler2D bumpmap;
 varying vec2  TexCoord;

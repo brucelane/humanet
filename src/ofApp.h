@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxFFTFile.h"
+//#include "ofxFFTFile.h"
 #include "ofxSpout2Sender.h"
 #include "ofxXmlSettings.h"
 #include "ofxOsc.h"
@@ -44,16 +44,17 @@ private:
 	int 						targetWidth, targetHeight;
 	ofxXmlSettings 				settings;
 
-	ofSoundPlayer soundPlayer;
+	//ofSoundPlayer soundPlayer;
 	float audioThreshold;
 	float audioPeakDecay;
 	float audioMaxDecay;
 	bool audioMirror;
-	ofxFFTFile fftFile;
+	//ofxFFTFile fftFile;
 	float audioValue;
 	float factor;
 	float maxHeight;
 	ofVec3f  twod;
+	ofVec4f iBackgroundColor;
 	float angleX;
 	float angleY;
 	float angleZ;

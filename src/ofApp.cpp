@@ -43,10 +43,10 @@ void ofApp::setup() {
 
 	shader.load("shaders/displace.vert", "shaders/displace.frag");
 
-	fftFile.setMirrorData(false);
-	fftFile.setup();
+	//fftFile.setMirrorData(false);
+	//fftFile.setup();
 
-	soundPlayer.loadSound("humanet.wav");
+	//soundPlayer.loadSound("humanet.wav");
 	factor = 1.0f;
 	angleX = 180.0f;
 	angleY = 0.0f;
@@ -148,13 +148,13 @@ void ofApp::update() {
 					if (!isPlaying) {
 						isPlaying = true;
 						startTime = ofGetElapsedTimef();
-						soundPlayer.play(); // TODO doubles the sound, needed for fft but not in a live performance
-					}
+						//soundPlayer.play(); // TODO doubles the sound, needed for fft but not in a live performance
+					} 
 				}
 				else {
 					if (isPlaying) {
 						isPlaying = false;
-						soundPlayer.stop();
+						//soundPlayer.stop();
 						imgIndex = 1;
 						loadImage();
 					}
@@ -167,7 +167,7 @@ void ofApp::update() {
 		}
 
 	}
-	if (soundPlayer.getIsPlaying() == true) {
+	/*if (soundPlayer.getIsPlaying() == true) {
 		fftFile.setThreshold(audioThreshold);
 		fftFile.setPeakDecay(audioPeakDecay);
 		fftFile.setMaxDecay(audioMaxDecay);
@@ -178,7 +178,7 @@ void ofApp::update() {
 		float * audioData = new float[numOfVerts];
 		fftFile.getFftPeakData(audioData, numOfVerts);
 		audioValue = audioData[8];  // yg1: 220
-	}
+	}*/
 	//if (audioValue < 0.01) {
 	//	//if (factor == 0.0f) factor = 0.0f;
 	//	factor -= 0.1;
@@ -214,20 +214,19 @@ void ofApp::draw() {
 		
 		ofPushMatrix();
 		twod.set(0.30, 0.59, 0.11);
+		iBackgroundColor.set(0.90, 0.09, 0.01, 0.5);
 		//twod.set(0.0, 0.0, 0.0);
 		shader.begin();
 		shader.setUniformTexture("colormap", colormap, 1);
 		shader.setUniformTexture("bumpmap", bumpmap, 2);
 		//shader.setUniformTexture("colormap", image, 1);
 		//shader.setUniformTexture("bumpmap", image, 2);
-		shader.setUniform1f("maxHeight", maxHeight);
+		shader.setUniform1f("maxHeight", my);// maxHeight);
 		shader.setUniform3f("twod", twod);
-		//if (isPlaying) {
-			currentTime = ofGetElapsedTimef() - startTime;
-		/*}
-		else {
-			currentTime = 0.0f;
-		} */
+		shader.setUniform4f("iBackgroundColor", iBackgroundColor);
+		
+		currentTime = ofGetElapsedTimef() - startTime;
+		
 		if (currentTime < 25.7f) {
 			shader.setUniform1f("time", currentTime);
 			angleX = 0.0f;
@@ -239,7 +238,8 @@ void ofApp::draw() {
 		else {
 			shader.setUniform1f("time", 40.0f);
 			angleX = 360.0f + (mx / 1.0 + 0.01) * sinf(float(ofGetFrameNum()) / 500.0f);
-			angleY = 360.0f + (my / 1.0 + 0.01) * sinf(float(ofGetFrameNum()) / 500.0f);
+			//angleY = 360.0f + (my / 1.0 + 0.01) * sinf(float(ofGetFrameNum()) / 500.0f);
+			angleY = 360.0f + 0.01 * sinf(float(ofGetFrameNum()) / 500.0f);
 			angleZ = 0.0f;
 			ofTranslate(targetWidth / 2, targetHeight / 2);
 		}
@@ -335,14 +335,14 @@ void ofApp::keyPressed(int key) {
 		
 		if (isPlaying) {
 			isPlaying = false;
-			soundPlayer.stop();
+			//soundPlayer.stop();
 			imgIndex = 1;
 			loadImage();
 		}
 		else {
 			isPlaying = true;
 			startTime = ofGetElapsedTimef();
-			soundPlayer.play();
+			//soundPlayer.play();
 		}
 	}
 }
