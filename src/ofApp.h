@@ -1,7 +1,9 @@
 #pragma once
 
 #include "ofMain.h"
+// begin comment this for external wav play
 //#include "ofxFFTFile.h"
+// end comment this for external wav play
 #include "ofxSpout2Sender.h"
 #include "ofxXmlSettings.h"
 #include "ofxOsc.h"
@@ -43,13 +45,14 @@ private:
 	ofShader 					shader;
 	int 						targetWidth, targetHeight;
 	ofxXmlSettings 				settings;
-
+	// begin comment this for external wav play
 	//ofSoundPlayer soundPlayer;
+	//ofxFFTFile fftFile;
+	// end comment this for external wav play
 	float audioThreshold;
 	float audioPeakDecay;
 	float audioMaxDecay;
 	bool audioMirror;
-	//ofxFFTFile fftFile;
 	float audioValue;
 	float factor;
 	float maxHeight;
@@ -71,6 +74,7 @@ private:
 
 	int mx, my;
 	string mouseButtonState;
+	bool clearFbo;
 
 	string oscAddr = "";
 	int current, oscInt0, bar, beat;

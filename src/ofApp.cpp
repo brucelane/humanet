@@ -43,16 +43,19 @@ void ofApp::setup() {
 
 	shader.load("shaders/displace.vert", "shaders/displace.frag");
 
-	//fftFile.setMirrorData(false);
-	//fftFile.setup();
+	// begin comment this for external wav play
+	/*fftFile.setMirrorData(false);
+	fftFile.setup();
+	soundPlayer.loadSound("humanet.wav");*/
+	// end comment this for external wav play
 
-	//soundPlayer.loadSound("humanet.wav");
 	factor = 1.0f;
 	angleX = 180.0f;
 	angleY = 0.0f;
 	angleZ = 180.0f;
 	startTime = 1200.0f;
 	isPlaying = false;
+	clearFbo = true;
 	//osc
 	// listen on the given port
 	cout << "listening for osc messages on port " << PORT << "\n";
@@ -83,27 +86,34 @@ void ofApp::update() {
 		// get the next message
 		ofxOscMessage m;
 		receiver.getNextMessage(m);
-
+		oscAddr = m.getAddress();
 		// check for mouse moved message
-		if (m.getAddress() == "/mouse/position") {
+		if (oscAddr == "/mouse/position") {
 			// both the arguments are int32's
 			mx = m.getArgAsInt32(0);
 			my = m.getArgAsInt32(1);
 		}
 		// check for mouse button message
-		else if (m.getAddress() == "/mouse/button") {
+		else if (oscAddr == "/mouse/button") {
 			// the single argument is a string
 			mouseButtonState = m.getArgAsString(0);
 		}
 		// check for an image being sent (note: the size of the image depends greatly on your network buffer sizes - if an image is too big the message won't come through ) 
-		else if (m.getAddress() == "/image") {
+		else if (oscAddr == "/image") {
 			ofBuffer buffer = m.getArgAsBlob(0);
 			titleImage.load(buffer);
+		}
+		else if (oscAddr == "/Spectrum") {
+			for (int i = 0; i < m.getNumArgs(); i++) {
+				if (m.getArgType(i) == OFXOSC_TYPE_FLOAT) {
+					if (i == 3) audioValue = m.getArgAsFloat(i);
+				}
+			}
 		}
 		else {
 			// unrecognized message: display on the bottom of the screen
 			string msg_string;
-			oscAddr = m.getAddress();
+
 			msg_string = m.getAddress();
 			msg_string += ": ";
 			for (int i = 0; i < m.getNumArgs(); i++) {
@@ -125,8 +135,6 @@ void ofApp::update() {
 					msg_string += "unknown";
 				}
 			}
-			// add to the list of strings to display
-			msg_strings[current_msg_string] = msg_string;
 			if (oscAddr == "/beat") {
 				// int32 1 to 4 beat from Transthor
 				beat = oscInt0 - 1;
@@ -136,7 +144,7 @@ void ofApp::update() {
 			else if (oscAddr == "/bar") {
 				bar = oscInt0;
 				current = bar * 4 + beat;
-				if (current > 67  && current % 16 == 4 && (beat == 0 || beat == 1)) {
+				if (current > 67 && current % 16 == 4 && (beat == 0 || beat == 1)) {
 					if (imgIndex != ((oscInt0 - 16) / 4) + 2) {
 						imgIndex = ((oscInt0 - 16) / 4) + 2;
 						loadImage();
@@ -149,7 +157,7 @@ void ofApp::update() {
 						isPlaying = true;
 						startTime = ofGetElapsedTimef();
 						//soundPlayer.play(); // TODO doubles the sound, needed for fft but not in a live performance
-					} 
+					}
 				}
 				else {
 					if (isPlaying) {
@@ -160,6 +168,10 @@ void ofApp::update() {
 					}
 				}
 			}
+
+			// add to the list of strings to display
+			msg_strings[current_msg_string] = msg_string;
+
 			timers[current_msg_string] = ofGetElapsedTimef() + 5.0f;
 			current_msg_string = (current_msg_string + 1) % NUM_MSG_STRINGS;
 			// clear the next line
@@ -167,6 +179,7 @@ void ofApp::update() {
 		}
 
 	}
+	// begin comment this for external wav play
 	/*if (soundPlayer.getIsPlaying() == true) {
 		fftFile.setThreshold(audioThreshold);
 		fftFile.setPeakDecay(audioPeakDecay);
@@ -178,7 +191,8 @@ void ofApp::update() {
 		float * audioData = new float[numOfVerts];
 		fftFile.getFftPeakData(audioData, numOfVerts);
 		audioValue = audioData[8];  // yg1: 220
-	}*/
+	} */
+	// end comment this for external wav play
 	//if (audioValue < 0.01) {
 	//	//if (factor == 0.0f) factor = 0.0f;
 	//	factor -= 0.1;
@@ -197,12 +211,14 @@ void ofApp::draw() {
 	ofSetColor(255);
 	if (isPlaying) {
 		maxHeight = audioValue * 50 * factor + ofGetFrameNum() / 200;
-		
-		fbo.begin();
-		if (current % 16 == 4  && (beat == 0 || beat == 1) ) {
-			maxHeight = 200.0f;		
+
+		fbo.begin();  
+		if (current % 16 == 4 && (beat == 0 || beat == 1)) {
+			if (current < 710 && current != 260 && current != 276 && current != 292 && current != 308) {
+				maxHeight = 140.0f;
+			}
 		}
-		else {
+		if (clearFbo) {
 			ofClear(0, 0, 0, 0);
 		}
 		/*if (bar % 4 == 0 && beat < 2) {
@@ -211,7 +227,7 @@ void ofApp::draw() {
 		else {
 			ofClear(0, 0, 0, 0);
 		}*/
-		
+
 		ofPushMatrix();
 		twod.set(0.30, 0.59, 0.11);
 		iBackgroundColor.set(0.90, 0.09, 0.01, 0.5);
@@ -221,12 +237,12 @@ void ofApp::draw() {
 		shader.setUniformTexture("bumpmap", bumpmap, 2);
 		//shader.setUniformTexture("colormap", image, 1);
 		//shader.setUniformTexture("bumpmap", image, 2);
-		shader.setUniform1f("maxHeight", my);// maxHeight);
+		shader.setUniform1f("maxHeight", maxHeight);//my); 
 		shader.setUniform3f("twod", twod);
 		shader.setUniform4f("iBackgroundColor", iBackgroundColor);
-		
+
 		currentTime = ofGetElapsedTimef() - startTime;
-		
+
 		if (currentTime < 25.7f) {
 			shader.setUniform1f("time", currentTime);
 			angleX = 0.0f;
@@ -281,7 +297,7 @@ void ofApp::draw() {
 		ofDrawBitmapString(msg_strings[i], 10, 60 + 15 * i);
 	}
 
-	ofDrawBitmapString("current: " + ofToString(current), 20, 40);
+	ofDrawBitmapString("current: " + ofToString(current) + " audio: " + ofToString(audioValue) + " maxHeight: " + ofToString(maxHeight), 20, 40);
 }
 void ofApp::loadImage() {
 	bool bFileThere = false;
@@ -331,19 +347,27 @@ void ofApp::keyPressed(int key) {
 		//link.setTempo(link.tempo() - 1);
 		factor--;
 		if (factor < 1) factor = 1;
-	} else if (key == ' ') {
-		
+	}
+	else if (key == ' ') {
+
 		if (isPlaying) {
 			isPlaying = false;
+			// begin comment this for external wav play
 			//soundPlayer.stop();
+			// end comment this for external wav play
 			imgIndex = 1;
 			loadImage();
 		}
 		else {
 			isPlaying = true;
 			startTime = ofGetElapsedTimef();
+			// begin comment this for external wav play
 			//soundPlayer.play();
+			// end comment this for external wav play
 		}
+	}
+	else if (key == 'c') {
+		clearFbo = false;
 	}
 }
 void ofApp::exit() {
@@ -351,7 +375,9 @@ void ofApp::exit() {
 }
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key) {
-
+	if (key == 'c') {
+		clearFbo = true;
+	}
 }
 
 //--------------------------------------------------------------
