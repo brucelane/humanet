@@ -13,97 +13,97 @@
     <ClCompile Include="src\ofApp.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxFFT\src\ofxFFTBase.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxFFT\src\ofxFFTBase.cpp">
       <Filter>addons\ofxFFT\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxFFT\src\ofxFFTFile.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxFFT\src\ofxFFTFile.cpp">
       <Filter>addons\ofxFFT\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxFFT\src\ofxFFTLive.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxFFT\src\ofxFFTLive.cpp">
       <Filter>addons\ofxFFT\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxFFT\libs\fft.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxFFT\libs\fft.cpp">
       <Filter>addons\ofxFFT\libs</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\src\ofxOscBundle.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxOsc\src\ofxOscBundle.cpp">
       <Filter>addons\ofxOsc\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\src\ofxOscMessage.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxOsc\src\ofxOscMessage.cpp">
       <Filter>addons\ofxOsc\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\src\ofxOscParameterSync.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxOsc\src\ofxOscParameterSync.cpp">
       <Filter>addons\ofxOsc\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\src\ofxOscReceiver.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxOsc\src\ofxOscReceiver.cpp">
       <Filter>addons\ofxOsc\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\src\ofxOscSender.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxOsc\src\ofxOscSender.cpp">
       <Filter>addons\ofxOsc\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\ip\IpEndpointName.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\ip\IpEndpointName.cpp">
       <Filter>addons\ofxOsc\libs\oscpack\src\ip</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\ip\win32\NetworkingUtils.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\ip\win32\NetworkingUtils.cpp">
       <Filter>addons\ofxOsc\libs\oscpack\src\ip\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\ip\win32\UdpSocket.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\ip\win32\UdpSocket.cpp">
       <Filter>addons\ofxOsc\libs\oscpack\src\ip\win32</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\osc\OscOutboundPacketStream.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\osc\OscOutboundPacketStream.cpp">
       <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.cpp">
       <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.cpp">
       <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.cpp">
       <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\src\ofxSpout2Receiver.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\src\ofxSpout2Receiver.cpp">
       <Filter>addons\ofxSpout2\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\src\ofxSpout2Sender.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\src\ofxSpout2Sender.cpp">
       <Filter>addons\ofxSpout2\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\src\SpoutDirectX.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\src\SpoutDirectX.cpp">
       <Filter>addons\ofxSpout2\libs\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\src\SpoutGLDXinterop.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\src\SpoutGLDXinterop.cpp">
       <Filter>addons\ofxSpout2\libs\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\src\SpoutGLextensions.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\src\SpoutGLextensions.cpp">
       <Filter>addons\ofxSpout2\libs\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\src\SpoutMemoryShare.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\src\SpoutMemoryShare.cpp">
       <Filter>addons\ofxSpout2\libs\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\src\SpoutReceiver.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\src\SpoutReceiver.cpp">
       <Filter>addons\ofxSpout2\libs\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\src\SpoutSDK.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\src\SpoutSDK.cpp">
       <Filter>addons\ofxSpout2\libs\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\src\SpoutSender.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\src\SpoutSender.cpp">
       <Filter>addons\ofxSpout2\libs\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\src\SpoutSenderNames.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\src\SpoutSenderNames.cpp">
       <Filter>addons\ofxSpout2\libs\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\src\SpoutSharedMemory.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\src\SpoutSharedMemory.cpp">
       <Filter>addons\ofxSpout2\libs\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxXmlSettings\src\ofxXmlSettings.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxXmlSettings\src\ofxXmlSettings.cpp">
       <Filter>addons\ofxXmlSettings\src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxXmlSettings\libs\tinyxml.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxXmlSettings\libs\tinyxml.cpp">
       <Filter>addons\ofxXmlSettings\libs</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxXmlSettings\libs\tinyxmlerror.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxXmlSettings\libs\tinyxmlerror.cpp">
       <Filter>addons\ofxXmlSettings\libs</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\..\Syncthing\of098\addons\ofxXmlSettings\libs\tinyxmlparser.cpp">
+    <ClCompile Include="..\..\..\..\..\dev\of098\addons\ofxXmlSettings\libs\tinyxmlparser.cpp">
       <Filter>addons\ofxXmlSettings\libs</Filter>
     </ClCompile>
   </ItemGroup>
@@ -185,121 +185,121 @@
     <ClInclude Include="src\ofApp.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxFFT\src\ofxFFTBase.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxFFT\src\ofxFFTBase.h">
       <Filter>addons\ofxFFT\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxFFT\src\ofxFFTFile.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxFFT\src\ofxFFTFile.h">
       <Filter>addons\ofxFFT\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxFFT\src\ofxFFTLive.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxFFT\src\ofxFFTLive.h">
       <Filter>addons\ofxFFT\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxFFT\libs\fft.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxFFT\libs\fft.h">
       <Filter>addons\ofxFFT\libs</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\src\ofxOsc.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\src\ofxOsc.h">
       <Filter>addons\ofxOsc\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\src\ofxOscArg.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\src\ofxOscArg.h">
       <Filter>addons\ofxOsc\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\src\ofxOscBundle.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\src\ofxOscBundle.h">
       <Filter>addons\ofxOsc\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\src\ofxOscMessage.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\src\ofxOscMessage.h">
       <Filter>addons\ofxOsc\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\src\ofxOscParameterSync.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\src\ofxOscParameterSync.h">
       <Filter>addons\ofxOsc\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\src\ofxOscReceiver.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\src\ofxOscReceiver.h">
       <Filter>addons\ofxOsc\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\src\ofxOscSender.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\src\ofxOscSender.h">
       <Filter>addons\ofxOsc\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\ip\IpEndpointName.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\ip\IpEndpointName.h">
       <Filter>addons\ofxOsc\libs\oscpack\src\ip</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\ip\NetworkingUtils.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\ip\NetworkingUtils.h">
       <Filter>addons\ofxOsc\libs\oscpack\src\ip</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\ip\PacketListener.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\ip\PacketListener.h">
       <Filter>addons\ofxOsc\libs\oscpack\src\ip</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\ip\TimerListener.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\ip\TimerListener.h">
       <Filter>addons\ofxOsc\libs\oscpack\src\ip</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\ip\UdpSocket.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\ip\UdpSocket.h">
       <Filter>addons\ofxOsc\libs\oscpack\src\ip</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\osc\MessageMappingOscPacketListener.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\osc\MessageMappingOscPacketListener.h">
       <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\osc\OscException.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\osc\OscException.h">
       <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\osc\OscHostEndianness.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\osc\OscHostEndianness.h">
       <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\osc\OscOutboundPacketStream.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\osc\OscOutboundPacketStream.h">
       <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\osc\OscPacketListener.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\osc\OscPacketListener.h">
       <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\osc\OscPrintReceivedElements.h">
       <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\osc\OscReceivedElements.h">
       <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxOsc\libs\oscpack\src\osc\OscTypes.h">
       <Filter>addons\ofxOsc\libs\oscpack\src\osc</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\src\ofxSpout2Receiver.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\src\ofxSpout2Receiver.h">
       <Filter>addons\ofxSpout2\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\src\ofxSpout2Sender.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\src\ofxSpout2Sender.h">
       <Filter>addons\ofxSpout2\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\include\Spout.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\include\Spout.h">
       <Filter>addons\ofxSpout2\libs\include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\include\SpoutCommon.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\include\SpoutCommon.h">
       <Filter>addons\ofxSpout2\libs\include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\include\SpoutDirectX.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\include\SpoutDirectX.h">
       <Filter>addons\ofxSpout2\libs\include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\include\SpoutGLDXinterop.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\include\SpoutGLDXinterop.h">
       <Filter>addons\ofxSpout2\libs\include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\include\SpoutGLextensions.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\include\SpoutGLextensions.h">
       <Filter>addons\ofxSpout2\libs\include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\include\SpoutMemoryShare.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\include\SpoutMemoryShare.h">
       <Filter>addons\ofxSpout2\libs\include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\include\SpoutReceiver.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\include\SpoutReceiver.h">
       <Filter>addons\ofxSpout2\libs\include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\include\SpoutSDK.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\include\SpoutSDK.h">
       <Filter>addons\ofxSpout2\libs\include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\include\SpoutSender.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\include\SpoutSender.h">
       <Filter>addons\ofxSpout2\libs\include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\include\SpoutSenderNames.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\include\SpoutSenderNames.h">
       <Filter>addons\ofxSpout2\libs\include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxSpout2\libs\include\SpoutSharedMemory.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxSpout2\libs\include\SpoutSharedMemory.h">
       <Filter>addons\ofxSpout2\libs\include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxXmlSettings\src\ofxXmlSettings.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxXmlSettings\src\ofxXmlSettings.h">
       <Filter>addons\ofxXmlSettings\src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\..\Syncthing\of098\addons\ofxXmlSettings\libs\tinyxml.h">
+    <ClInclude Include="..\..\..\..\..\dev\of098\addons\ofxXmlSettings\libs\tinyxml.h">
       <Filter>addons\ofxXmlSettings\libs</Filter>
     </ClInclude>
   </ItemGroup>
