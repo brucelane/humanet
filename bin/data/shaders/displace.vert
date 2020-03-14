@@ -16,6 +16,9 @@ void main(void) {
     vec4 newVertexPos = vec4(gl_Normal * df * maxHeight, 0.0) + gl_Vertex; // without 2D lpm
 
 	newVertexPos = mix(newVertexPos, vec4(TexCoord*vec2(1,-1) * 800.0, 0.0, 1.0), fract( (40.0 - time) * 0.02));
+
+	//newVertexPos = mix(newVertexPos, vec4(TexCoord*vec2(1,-1) * 800.0, 0.0, 1.0), fract( (10.0 - time) * 0.08));
+
 	//newVertexPos = vec4(TexCoord*vec2(1,-1) * 800.0, 0.0, 1.0);
 	gl_Position = gl_ModelViewProjectionMatrix * newVertexPos;
 }

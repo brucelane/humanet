@@ -143,6 +143,7 @@ void ofApp::update() {
 			}
 			else if (oscAddr == "/bar") {
 				bar = oscInt0;
+				// for video capture ScreenToGif vimeo clip if (bar == 17) factor = 37.0f;
 				current = bar * 4 + beat;
 				if (current > 67 && current % 16 == 4 && (beat == 0 || beat == 1)) {
 					if (imgIndex != ((oscInt0 - 16) / 4) + 2) {
@@ -210,7 +211,9 @@ void ofApp::draw() {
 
 	ofSetColor(255);
 	if (isPlaying) {
+		
 		maxHeight = audioValue * 50 * factor + ofGetFrameNum() / 200;
+		//for video capture ScreenToGif vimeo clip maxHeight = audioValue * 150 * factor + ofGetFrameNum() / 200;
 
 		fbo.begin();  
 		if (current % 16 == 4 && (beat == 0 || beat == 1)) {
@@ -218,6 +221,13 @@ void ofApp::draw() {
 				maxHeight = 140.0f;
 			}
 		}
+		/*
+		for video capture ScreenToGif vimeo clip
+		if (current % 16 == 4 && (beat == 0 || beat == 1)) {
+			
+				maxHeight = 1400.0f;
+			
+		}*/
 		if (clearFbo) {
 			ofClear(0, 0, 0, 0);
 		}
@@ -281,9 +291,10 @@ void ofApp::draw() {
 		if (titleImage.getWidth() > 0) {
 			titleImage.draw(0, 0);
 			spout.sendTexture(titleImage.getTexture(), "humanet");
-			ofDrawBitmapString("Image:", 10, 160);
+			//ofDrawBitmapString("Image:", 10, 160);
 		}
 	}
+	/*
 	string buf;
 	buf = "listening for osc messages on port" + ofToString(PORT);
 	ofDrawBitmapString(buf, 10, 20);
@@ -298,6 +309,7 @@ void ofApp::draw() {
 	}
 
 	ofDrawBitmapString("current: " + ofToString(current) + " audio: " + ofToString(audioValue) + " maxHeight: " + ofToString(maxHeight), 20, 40);
+	*/
 }
 void ofApp::loadImage() {
 	bool bFileThere = false;
